@@ -1,0 +1,37 @@
+
+    -- UI Construction
+
+    local JumpscareGui = Instance.new("ScreenGui")
+    local Background = Instance.new("Frame")
+    local Face = Instance.new("ImageLabel")
+
+    JumpscareGui.Name = "JumpscareGui"
+    JumpscareGui.IgnoreGuiInset = true
+    JumpscareGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    JumpscareGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+    Face.Name = "Face"
+    Face.AnchorPoint = Vector2.new(0.5, 0.5)
+    Face.BackgroundTransparency = 1
+    Face.Position = UDim2.new(0.5, 0, 0.5, 0)
+    Face.ResampleMode = Enum.ResamplerMode.Pixelated
+    Face.Size = UDim2.new(0, 0, 0, 0)
+    Face.Image = game.ReplicatedStorage.Matcher.Attachment.Face1.Texture
+
+    Face.Parent = JumpscareGui
+
+    game.TweenService:Create(Face, TweenInfo.new(0.6), {Size = UDim2.new(0, 750, 0, 750), ImageTransparency = 0}):Play()
+    game.TweenService:Create(Face, TweenInfo.new(0.6), {Rotation = 10}):Play()
+    task.wait(0.6)
+    game.TweenService:Create(Face, TweenInfo.new(0.6), {ImageTransparency = 1}):Play()
+    game.TweenService:Create(Face, TweenInfo.new(0.6), {ImageColor3 = Color3.fromRGB(0, 0, 0)}):Play()
+                Face.Rotation = 13
+                task.wait(0.1)
+                Face.Rotation = 5
+                task.wait(0.1)
+                Face.Rotation = 13
+                task.wait(0.1)
+                Face.Rotation = 5
+                task.wait(0.1)
+    task.wait(1)
+    JumpscareGui:Destroy()
