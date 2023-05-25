@@ -1,0 +1,46 @@
+    -- UI Construction
+local v1 = game.Players.LocalPlayer.PlayerGui.CustomJumpscares
+local u2 = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)
+local dances = {Color3.fromRGB(64, 0, 4), Color3.fromRGB(255,50,50), Color3.fromRGB(255,0,245), Color3.fromRGB(171,35,35), Color3.fromRGB(255,255,255)}
+local fuq = {0.005, -0.005, -0.001, 0.002, -0.003, -0.0015, 0.007}
+u2.deathtick = tick() + 10
+
+    local Background = v1.MatchJumpscare
+    local Face = Background.Face
+local Jump = true
+local Spunk = Face.Position
+local scare = v1.MatchJumpscare.Scare
+v1.Enabled = true
+v1.MatchJumpscare.Visible = true
+
+        task.spawn(function()
+            while Jump == true do
+                Background.BackgroundColor3 = dances[math.random(1, #dances)]
+                task.wait(0.005)
+                Background.BackgroundColor3 = Color3.fromRGB(64, 0, 4)
+                task.wait(0.005)
+            end
+        end) 
+
+        task.spawn(function()
+            while Jump == true do
+                        game.TweenService:Create(Face, TweenInfo.new(0.05), {Position = Spunk + UDim2.new(fuq[math.random(1, #fuq)], 0, fuq[math.random(1, #fuq)], 0)}):Play()
+                        game.TweenService:Create(Face, TweenInfo.new(0.05), {Rotation = fuq[math.random(1, #fuq)]}):Play()
+            task.wait(math.random(25, 100) / 1000)
+            end
+        end) 
+
+    scare:Play()
+game.TweenService:Create(Face, TweenInfo.new(0.65), {Size = UDim2.new(0, 2550, 0, 2550)}):Play()
+    task.wait(0.7)
+    Jump = false
+u2.deathtick = tick()
+task.wait(0.05)
+    scare:Stop()
+    scare.TimePosition = 0
+    scare.PlaybackSpeed = 1.3
+    v1.MatchJumpscare.Visible = false
+    v1.Enabled = false
+    Face.Rotation = 0
+    Face.Size = UDim2.new(0, 150, 0, 150)
+    Face.Position = UDim2.new(0.5, 0, 0.5, 0)
